@@ -3,6 +3,7 @@ import java.util.*;
 
 public class WeekendFitnessClub {
 
+    //8 weekend lessons
     private static final String[][] TIMETABLE = {
             {"Sunday", "SPIN", "BODYSCULPT"},
             {"Saturday", "BODYSCULPT", "YOGA"},
@@ -22,6 +23,7 @@ public class WeekendFitnessClub {
             {"Saturday", "YOGA", "ZUMBA"}
     };
 
+    //all lesson prices
     private static final Map<String, Double> LESSON_PRICES = new HashMap<String, Double>() {{
         put("SPIN", 20.0);
         put("YOGA", 15.0);
@@ -29,16 +31,16 @@ public class WeekendFitnessClub {
         put("ZUMBA", 18.0);
     }};
 
-    private static final int MAX_CUSTOMERS_PER_LESSON = 5;
+    private static final int MAX_CUSTOMERS_PER_LESSON = 5; //max number of customer per lesson
 
-    private static final List<Customer> CUSTOMERS = new ArrayList<Customer>() {
+    private static final List<Customer> CUSTOMERS = new ArrayList<Customer>() { //defined all customer lists
         {
             add(new Customer("John"));
             add(new Customer("Peter"));
         }
     };
 
-    private static Customer getCustomer(String customerName) {
+    private static Customer getCustomer(String customerName) { //get customer by customer name method
         for (Customer customer : CUSTOMERS) {
             if (customer.getName().equalsIgnoreCase(customerName)) {
                 return customer;
@@ -46,18 +48,18 @@ public class WeekendFitnessClub {
         }
         return null;
     }
-    public static void displayMenu(){
-        System.out.println("\nWelcome to the Weekend Fitness Club booking system!");
-        System.out.println("Please choose an option:");
+    public static void displayMenu(){ //a method for print all menu options
+        System.out.println("\nWelcome to the Weekend Fitness Club booking system!"); // print data on console
+        System.out.println("Please choose an option:"); // print data on console
         System.out.println("1. Check timetable by day");
-        System.out.println("2. Check timetable by fitness type");
+        System.out.println("2. Check timetable by fitness type"); // print data on console
         System.out.println("3. Add a customer");
-        System.out.println("4. Book a lesson");
+        System.out.println("4. Book a lesson"); // print data on console
         System.out.println("5. Change a booking");
-        System.out.println("6. Cancel a booking");
-        System.out.println("7. Provide a review and rating");
-        System.out.println("8. Print reports");
-        System.out.println("9. Exit");
+        System.out.println("6. Cancel a booking"); // print data on console
+        System.out.println("7. Provide a review and rating"); // print data on console
+        System.out.println("8. Print reports"); // print data on console
+        System.out.println("9. Exit"); // print data on console
         System.out.print("Please choose options: ");
     }
 
@@ -93,37 +95,37 @@ public class WeekendFitnessClub {
                     printReportsForLessons();
                     break;
                 case 9:
-                    System.out.println("Thank you for using the Weekend Fitness Club booking system.");
+                    System.out.println("Thank you for using the Weekend Fitness Club booking system.");// print data on console
                     System.exit(0);
                 default:
                     System.out.println(CUSTOMERS);
-                    System.out.println("HEYY Invalid option. Please choose again.");
+                    System.out.println("HEYY Invalid option. Please choose again.");// print data on console
                     break;
             }
         }
     }
 
-    private static void seeTimetableByDay() {
+    private static void seeTimetableByDay() { //method for print all timetable details by day
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nEnter the day (Saturday or Sunday) to view the timetable:");
         String day = scanner.nextLine();
         boolean hasLessons = false;
         int count = 0;
         System.out.println();
-        for (String[] lesson : TIMETABLE) {
+        for (String[] lesson : TIMETABLE) { //iterate list
             if (lesson[0].equalsIgnoreCase(day)) {
                 System.out.println("Weekend " + ++count);
-                System.out.println(lesson[1] + " at " + lesson[0] + " at 9:00 AM");
-                System.out.println(lesson[2] + " at " + lesson[0] + " at 10:00 AM");
+                System.out.println(lesson[1] + " at " + lesson[0] + " at 9:00 AM");// print data on console
+                System.out.println(lesson[2] + " at " + lesson[0] + " at 10:00 AM");// print data on console
                 hasLessons = true;
             }
         }
         if (!hasLessons) {
-            System.out.println("There is no lesson for " + day + ". Thanks");
+            System.out.println("There is no lesson for " + day + ". Thanks");// print data on console
         }
     }
 
-      private static void seeTimetableByFitnessType() {
+      private static void seeTimetableByFitnessType() { // method for print timetable details by fitness type
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nEnter the fitness type (SPIN, YOGA, BODYSCULPT, or ZUMBA) to view the timetable:");
         String fitnessType = scanner.nextLine();
@@ -131,19 +133,19 @@ public class WeekendFitnessClub {
         System.out.println();
         for (String[] lesson : TIMETABLE) {
             if (lesson[1].equalsIgnoreCase(fitnessType)) {
-                System.out.println(lesson[1] + " at " + lesson[0] + " at 9:00");
+                System.out.println(lesson[1] + " at " + lesson[0] + " at 9:00");// print data on console
                 hasLessons = true;
             } else if (lesson[2].equalsIgnoreCase(fitnessType)) {
-                System.out.println(lesson[2] + " at " + lesson[0] + " at 10:00");
+                System.out.println(lesson[2] + " at " + lesson[0] + " at 10:00");// print data on console
                 hasLessons = true;
             }
         }
         if (!hasLessons) {
-            System.out.println("There are no lesson for " + fitnessType);
+            System.out.println("There are no lesson for " + fitnessType);// print data on console
         }
     }
 
-    private static int countCustomersBookedForLesson(String date, String lessonType) {
+    private static int countCustomersBookedForLesson(String date, String lessonType) { //get count of lesson
         int count = 0;
         for (Customer customer : CUSTOMERS) {
             List<Lesson> bookings = customer.getBookings();
@@ -158,27 +160,27 @@ public class WeekendFitnessClub {
         return count;
     }
 
-    private static void bookLesson(Scanner scanner) {
+    private static void bookLesson(Scanner scanner) { // book lesson based on customer details
         System.out.println("Please enter your name:");
-        String name = scanner.nextLine();
+        String name = scanner.nextLine(); //get name of customer
         Customer customer = getCustomer(name);
         if (customer == null) {
-            System.out.println("No customer found with that name. Please add the customer first.");
+            System.out.println("No customer found with that name. Please add the customer first.");// print data on console
             return;
         }
-        System.out.println("Please choose a lesson type:");
+        System.out.println("Please choose a lesson type:");// print data on console
         for (String lessonType : LESSON_PRICES.keySet()) {
             System.out.println(lessonType);
         }
-        String lessonType = scanner.nextLine().toUpperCase();
+        String lessonType = scanner.nextLine().toUpperCase(); // get lesson type
         if (!LESSON_PRICES.containsKey(lessonType)) {
-            System.out.println("Invalid lesson type. Please choose again.");
+            System.out.println("Invalid lesson type. Please choose again.");// print data on console
             return;
         }
-        System.out.println("Please choose a date (e.g. Saturday or Sunday):");
+        System.out.println("Please choose a date (e.g. Saturday or Sunday):");// print data on console
         String day = scanner.nextLine();
         boolean isLessonAvailable = false;
-        for (String[] lesson : TIMETABLE) {
+        for (String[] lesson : TIMETABLE) { //iterate list
             if (lesson[0].equalsIgnoreCase(day) && (lesson[1].equals(lessonType) || lesson[2].equals(lessonType))) {
                 int numCustomersBooked = countCustomersBookedForLesson(day, lessonType);
                 if (numCustomersBooked < MAX_CUSTOMERS_PER_LESSON) {
@@ -195,27 +197,27 @@ public class WeekendFitnessClub {
         }
     }
 
-    private static void changeBooking(Scanner scanner) {
+    private static void changeBooking(Scanner scanner) { //change booking based on customer input
         System.out.println("Enter your name:");
         String customerName = scanner.nextLine();
         Customer customer = getCustomer(customerName);
         if (customer == null) {
-            System.out.println("Customer not found.");
+            System.out.println("Customer not found.");// print data on console
             return;
         }
-        System.out.println("Please choose a date (e.g. Saturday or Sunday) for change:");
+        System.out.println("Please choose a date (e.g. Saturday or Sunday) for change:");// print data on console
         String day = scanner.nextLine();
         if (!day.equalsIgnoreCase("saturday") && !day.equalsIgnoreCase("sunday")) {
-            System.out.println("Please enter correct day");
+            System.out.println("Please enter correct day");// print data on console
             return;
         }
-        System.out.println("Please choose a lesson type for change:");
+        System.out.println("Please choose a lesson type for change:");// print data on console
         for (String lessonType : LESSON_PRICES.keySet()) {
             System.out.println(lessonType);
         }
         String lessonType = scanner.nextLine().toUpperCase();
         if (!LESSON_PRICES.containsKey(lessonType)) {
-            System.out.println("Invalid lesson type. Please choose again.");
+            System.out.println("Invalid lesson type. Please choose again.");// print data on console
             return;
         }
 
@@ -225,19 +227,19 @@ public class WeekendFitnessClub {
         for (Lesson l : customer.getBookings()) {
             if (l.getDay().equalsIgnoreCase(day) && l.getFitnessType().equalsIgnoreCase(lessonType)) {
 
-                System.out.println("Please choose a date (e.g. Saturday or Sunday) for update:");
+                System.out.println("Please choose a date (e.g. Saturday or Sunday) for update:");// print data on console
                 String updatedDay = scanner.nextLine();
                 if (!updatedDay.equalsIgnoreCase("saturday") && !updatedDay.equalsIgnoreCase("sunday")) {
-                    System.out.println("Please enter correct day");
+                    System.out.println("Please enter correct day");// print data on console
                     return;
                 }
-                System.out.println("Please choose a lesson type for update:");
+                System.out.println("Please choose a lesson type for update:");// print data on console
                 for (String l1 : LESSON_PRICES.keySet()) {
                     System.out.println(l1);
                 }
                 String updatedLessonType = scanner.nextLine().toUpperCase();
                 if (!LESSON_PRICES.containsKey(updatedLessonType)) {
-                    System.out.println("Invalid lesson type. Please choose again.");
+                    System.out.println("Invalid lesson type. Please choose again.");// print data on console
                     return;
                 }
                 for (String[] lesson : TIMETABLE) {
@@ -247,7 +249,7 @@ public class WeekendFitnessClub {
                             isLessonAvailable = true;
                             customer.getBookings().remove(l);
                             customer.getBookings().add(new Lesson(updatedDay, updatedLessonType));
-                            System.out.println("Booking changed successfully.");
+                            System.out.println("Booking changed successfully.");// print data on console
                             return;
                         }
                     }
@@ -258,13 +260,13 @@ public class WeekendFitnessClub {
         if (!isLessonAvailable) {
             System.out.println("Sorry, there are no available lessons of that type on " + day + ". Please try again after some time.");
         } else {
-            System.out.println("Somthing went wring. please enter correct data which is available.");
+            System.out.println("Somthing went wring. please enter correct data which is available.");// print data on console
         }
 
     }
 
 
-    private static void cancelBooking(Scanner scanner) {
+    private static void cancelBooking(Scanner scanner) { //cancelled booking based on customer inputs
         System.out.println("Enter your name:");
         String customerName = scanner.nextLine();
         Customer customer = getCustomer(customerName);
@@ -274,22 +276,22 @@ public class WeekendFitnessClub {
         }
         List<Lesson> bookings = customer.getBookings();
         if (bookings.isEmpty()) {
-            System.out.println("No bookings found for customer " + customerName);
+            System.out.println("No bookings found for customer " + customerName);// print data on console
             return;
         }
-        System.out.println("Enter the day (Saturday or Sunday) of the lesson to cancel:");
+        System.out.println("Enter the day (Saturday or Sunday) of the lesson to cancel:");// print data on console
         String day = scanner.nextLine();
         if (!day.equalsIgnoreCase("saturday") && !day.equalsIgnoreCase("sunday")) {
             System.out.println("Please enter correct day");
             return;
         }
-        System.out.println("Enter the fitness type of the lesson to cancel:");
+        System.out.println("Enter the fitness type of the lesson to cancel:");// print data on console
         for (String lessonType : LESSON_PRICES.keySet()) {
             System.out.println(lessonType);
         }
         String lessonType = scanner.nextLine().toUpperCase();
         if (!LESSON_PRICES.containsKey(lessonType)) {
-            System.out.println("Invalid lesson type. Please choose again.");
+            System.out.println("Invalid lesson type. Please choose again.");// print data on console
             return;
         }
         boolean isBooking = false;
@@ -306,52 +308,52 @@ public class WeekendFitnessClub {
         }
     }
 
-    private static void addCustomer(Scanner scanner) {
-        System.out.println("Enter the customer name:");
+    private static void addCustomer(Scanner scanner) { // add customer by name
+        System.out.println("Enter the customer name:");// print data on console
         String customerName = scanner.nextLine();
         Customer existingCustomer = getCustomer(customerName);
         if (existingCustomer != null) {
-            System.out.println("Customer already exists.");
+            System.out.println("Customer already exists.");// print data on console
             return;
         }
         Customer newCustomer = new Customer(customerName);
         CUSTOMERS.add(newCustomer);
-        System.out.println("Customer added successfully.");
+        System.out.println("Customer added successfully.");// print data on console
     }
 
-    private static void writeReviewAndRating(Scanner scanner) {
-        System.out.println("Enter your name:");
+    private static void writeReviewAndRating(Scanner scanner) { // write review and rating of customer by name
+        System.out.println("Enter your name:");// print data on console
         String customerName = scanner.nextLine();
         Customer customer = getCustomer(customerName);
         if (customer == null) {
-            System.out.println("Customer not found.");
+            System.out.println("Customer not found.");// print data on console
             return;
         }
         System.out.println("Enter the day (Saturday or Sunday) of the lesson to cancel:");
         String day = scanner.nextLine();
         if (!day.equalsIgnoreCase("saturday") && !day.equalsIgnoreCase("sunday")) {
-            System.out.println("Please enter correct day");
+            System.out.println("Please enter correct day");// print data on console
             return;
         }
-        System.out.println("Enter the fitness type of the lesson:");
+        System.out.println("Enter the fitness type of the lesson:");// print data on console
         for (String lessonType : LESSON_PRICES.keySet()) {
             System.out.println(lessonType);
         }
         String lessonType = scanner.nextLine().toUpperCase();
         if (!LESSON_PRICES.containsKey(lessonType)) {
-            System.out.println("Invalid lesson type. Please choose again.");
+            System.out.println("Invalid lesson type. Please choose again.");// print data on console
             return;
         }
         boolean isBooking = false;
         for (Lesson l : customer.getBookings()) {
             if (l.getDay().equalsIgnoreCase(day) && l.getFitnessType().equalsIgnoreCase(lessonType)) {
                 isBooking = true;
-                System.out.println("Enter your review:");
+                System.out.println("Enter your review:");// print data on console
                 String review = scanner.nextLine();
-                System.out.println("Enter your rating (1-5):");
+                System.out.println("Enter your rating (1-5):");// print data on console
                 int rating = scanner.nextInt();
                 l.addReview(review, rating);
-                System.out.println("Thank you for your review and rating " + customerName + " !");
+                System.out.println("Thank you for your review and rating " + customerName + " !");// print data on console
                 return;
 
             }
@@ -361,10 +363,10 @@ public class WeekendFitnessClub {
         }
     }
 
-    private static void printReportsForLessons() {
+    private static void printReportsForLessons() { //this method print all data of reports
         // Print total number of customers
         int totalCustomers = CUSTOMERS.size();
-        System.out.println("\nTotal number of customers: " + totalCustomers);
+        System.out.println("\nTotal number of customers: " + totalCustomers);// print data on console
 
         int totalSpin = 0, totalYoga = 0, totalBody = 0, totalZumba = 0;
         for (Customer cust : CUSTOMERS) {
@@ -391,7 +393,7 @@ public class WeekendFitnessClub {
                 lessons.add(new LessonSort(map.getKey(), totalZumba * map.getValue()));
         }
 
-        System.out.println("\nTop Highest Income lessons:");
+        System.out.println("\nTop Highest Income lessons:");// print data on console
         Collections.sort(lessons, new Comparator<LessonSort>() {
             @Override
             public int compare(LessonSort o1, LessonSort o2) {
