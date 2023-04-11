@@ -1,3 +1,5 @@
+package com.wfc.system;
+
 public class Review {
     private String review;
     private int rating;
@@ -17,7 +19,7 @@ public class Review {
 
     @Override
     public String toString() {
-        return "Review{" +
+        return "com.wfc.system.Review{" +
                 "review='" + review + '\'' +
                 ", rating=" + rating +
                 '}';

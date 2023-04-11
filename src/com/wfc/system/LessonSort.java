@@ -1,3 +1,5 @@
+package com.wfc.system;
+
 public class LessonSort {
 
     private String lessonName;
@@ -26,7 +28,7 @@ public class LessonSort {
 
     @Override
     public String toString() {
-        return "Lesson" +
+        return "com.wfc.system.Lesson" +
                 "Fitness Name='" + lessonName + '\'' +
                 ", Total Amount=" + totalLessonAmount +
                 '}';

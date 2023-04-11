@@ -1,3 +1,5 @@
+package com.wfc.system;
+
 import java.util.*;
 
 
@@ -40,7 +42,7 @@ public class WeekendFitnessClub {
         }
     };
 
-    private static Customer getCustomer(String customerName) { //get customer by customer name method
+    public static Customer getCustomer(String customerName) { //get customer by customer name method
         for (Customer customer : CUSTOMERS) {
             if (customer.getName().equalsIgnoreCase(customerName)) {
                 return customer;
@@ -145,7 +147,7 @@ public class WeekendFitnessClub {
         }
     }
 
-    private static int countCustomersBookedForLesson(String date, String lessonType) { //get count of lesson
+    public static int countCustomersBookedForLesson(String date, String lessonType) { //get count of lesson
         int count = 0;
         for (Customer customer : CUSTOMERS) {
             List<Lesson> bookings = customer.getBookings();
@@ -187,7 +189,7 @@ public class WeekendFitnessClub {
                     isLessonAvailable = true;
                     Lesson ob = new Lesson(day, lessonType);
                     customer.getBookings().add(ob);
-                    System.out.println("Lesson booked successfully for " + name + " on " + day + " for " + lessonType);
+                    System.out.println("com.wfc.system.Lesson booked successfully for " + name + " on " + day + " for " + lessonType);
                     break;
                 }
             }
@@ -202,7 +204,7 @@ public class WeekendFitnessClub {
         String customerName = scanner.nextLine();
         Customer customer = getCustomer(customerName);
         if (customer == null) {
-            System.out.println("Customer not found.");// print data on console
+            System.out.println("com.wfc.system.Customer not found.");// print data on console
             return;
         }
         System.out.println("Please choose a date (e.g. Saturday or Sunday) for change:");// print data on console
@@ -271,7 +273,7 @@ public class WeekendFitnessClub {
         String customerName = scanner.nextLine();
         Customer customer = getCustomer(customerName);
         if (customer == null) {
-            System.out.println("Customer not found.");
+            System.out.println("com.wfc.system.Customer not found.");
             return;
         }
         List<Lesson> bookings = customer.getBookings();
@@ -313,12 +315,12 @@ public class WeekendFitnessClub {
         String customerName = scanner.nextLine();
         Customer existingCustomer = getCustomer(customerName);
         if (existingCustomer != null) {
-            System.out.println("Customer already exists.");// print data on console
+            System.out.println("com.wfc.system.Customer already exists.");// print data on console
             return;
         }
         Customer newCustomer = new Customer(customerName);
         CUSTOMERS.add(newCustomer);
-        System.out.println("Customer added successfully.");// print data on console
+        System.out.println("com.wfc.system.Customer added successfully.");// print data on console
     }
 
     private static void writeReviewAndRating(Scanner scanner) { // write review and rating of customer by name
@@ -326,7 +328,7 @@ public class WeekendFitnessClub {
         String customerName = scanner.nextLine();
         Customer customer = getCustomer(customerName);
         if (customer == null) {
-            System.out.println("Customer not found.");// print data on console
+            System.out.println("com.wfc.system.Customer not found.");// print data on console
             return;
         }
         System.out.println("Enter the day (Saturday or Sunday) of the lesson to cancel:");

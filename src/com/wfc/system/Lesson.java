@@ -1,6 +1,8 @@
+package com.wfc.system;
+
 import java.util.ArrayList;
 
-class Lesson {
+public class Lesson {
     private String day;
     private String fitnessType;
     private ArrayList<Review> reviews;
@@ -25,7 +27,7 @@ class Lesson {
 
     @Override
     public String toString() {
-        return "Lesson{" +
+        return "com.wfc.system.Lesson{" +
                 "day='" + day + '\'' +
                 ", fitnessType='" + fitnessType + '\'' +
                 ", reviews=" + reviews +

@@ -1,3 +1,5 @@
+package com.wfc.system;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "com.wfc.system.Customer{" +
                 "name='" + name + '\'' +
                 ", bookings=" + bookings +
                 '}';
