@@ -27,7 +27,7 @@ public class Lesson {
 
     @Override
     public String toString() {
-        return "com.wfc.system.Lesson{" +
+        return "Lesson{" +
                 "day='" + day + '\'' +
                 ", fitnessType='" + fitnessType + '\'' +
                 ", reviews=" + reviews +

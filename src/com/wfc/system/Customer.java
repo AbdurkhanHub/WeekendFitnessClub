@@ -30,7 +30,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "com.wfc.system.Customer{" +
+        return "Customer{" +
                 "name='" + name + '\'' +
                 ", bookings=" + bookings +
                 '}';

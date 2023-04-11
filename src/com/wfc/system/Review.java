@@ -19,7 +19,7 @@ public class Review {
 
     @Override
     public String toString() {
-        return "com.wfc.system.Review{" +
+        return "Review{" +
                 "review='" + review + '\'' +
                 ", rating=" + rating +
                 '}';
